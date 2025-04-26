@@ -1,50 +1,103 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>PACE Parks Map</title>
-    <style>
-      /* Full-screen map */
-      #map {
-        height: 100%;
-      }
-      /* Position the map */
-      html, body {
-        height: 100%;
-        margin: 0;
-      }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
-    <script>
-      let map;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PACE Parks Map</title>
+  <style>
+    /* Make the map fill the entire page */
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 
-      function initMap() {
-        const mapOptions = {
-          center: {lat: 39.734220412710536, lng: -75.83946702777812}, // Midpoint of the labs
-          zoom: 14,
-          styles: [
-            {
-                "featureType": "poi.park",
-                "elementType": "all",
-                "stylers": [
-                  { "visibility": "on" }
-                ]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "all",
-                "stylers": [
-                  { "color": "#f4faf8" }
-                ]
-            },
-            // Add your full JSON style here from Snazzy Maps...
-          ]
-        };
+  <!-- Load Google Maps JavaScript API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places"></script>
 
-        map = new google.maps.Map(document.getElementById("map"), mapOptions);
-      }
-    </script>
-  </head>
-  <body onload="initMap()">
-    <div id="map"></div>
-  </body>
+  <script>
+    let map;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 39.734220412710536, lng: -75.83946702777812 }, // Your center coordinates
+        zoom: 14,
+        styles: [
+          {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#a2daf2" }
+            ]
+          },
+          {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#abce83" }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [
+              { "visibility": "simplified" }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "labels",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          },
+          {
+            "featureType": "poi.park",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#ccdca1" }
+            ]
+          },
+          {
+            "featureType": "poi.school",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#c9e4f7" }
+            ]
+          },
+          {
+            "featureType": "poi.sports_complex",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#c9f7d1" }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#447530" }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              { "visibility": "off" }
+            ]
+          }
+          // 👉 You can add even more detailed styles here if you want from SnazzyMaps
+        ]
+      });
+    }
+  </script>
+</head>
+
+<body onload="initMap()">
+  <div id="map"></div>
+</body>
 </html>
